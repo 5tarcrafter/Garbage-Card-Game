@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Scanner;
 
 public static void main(String[] args){
@@ -10,4 +10,5 @@ public static void main(String[] args){
     System.out.println("Number of players: " + numPlayers);
     Hand[] players = new Hand[numPlayers];
     players[0] = new Hand(10);
+    Deck deck = new Deck();
 }
