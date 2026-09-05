@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Deck {
     ArrayList<Card> deck = new ArrayList<>();
+    ArrayList<Card> discard = new ArrayList<>();
 
     public Deck(){
         for (int i = 0; i < 4; i++){//loop for times for the four suites
@@ -13,7 +14,7 @@ public class Deck {
             deck.add(new Card("Q"));
             deck.add(new Card("K"));
         }
-        this.printCards();
+        //this.printCards();
         this.shuffle();
     }
 
@@ -29,5 +30,19 @@ public class Deck {
             System.out.print(c.getValue() + " ");
         }
         System.out.println();
+    }
+
+    public void returnCard(Card c){
+        discard.add(c);
+    }
+
+    public Card dealCard(){
+        Card r = deck.removeFirst();
+        if (deck.size() == 0){
+            deck.addAll(discard);
+            this.shuffle();
+            discard.clear();
+        }
+        return r;
     }
 }

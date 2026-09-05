@@ -11,6 +11,13 @@ public class Card {
 
     public boolean isShown(){return this.shown;}
 
+    public String face(){
+        if (this.shown){
+            return this.value;
+        }
+        return "X";
+    }
+
     public void flip(){this.shown = !this.shown;}
 
     public void show(){this.shown = true;}
