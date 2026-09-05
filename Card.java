@@ -1,13 +1,13 @@
 public class Card {
-    char value;
+    private String value;
     //char suit; //suit not matter in garbage
-    boolean shown = false;
+    private boolean shown = false;
 
-    public Card(char a){
+    public Card(String a){
         this.value = a;
     }
 
-    public char getValue(){return this.value;}
+    public String getValue(){return this.value;}
 
     public boolean isShown(){return this.shown;}
 

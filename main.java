@@ -11,4 +11,5 @@ public static void main(String[] args){
     Hand[] players = new Hand[numPlayers];
     players[0] = new Hand(10);
     Deck deck = new Deck();
+    deck.printCards();
 }
