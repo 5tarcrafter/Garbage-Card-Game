@@ -1,9 +1,19 @@
+/**
+ * A class that manages the storing, dealing, shuffling of a deck of cards
+ */
 import java.util.ArrayList;
 
 public class Deck {
+    //Arraylists were chosen because they preserve order, sorry hash
     ArrayList<Card> deck = new ArrayList<>();
     ArrayList<Card> discard = new ArrayList<>();
 
+    /**
+     * Constructor for Deck
+     * Creates a deck of 52 cards
+     * Cards do not have suits as that is not important in Garbage
+     * Shuffles the deck at the end of creation
+     */
     public Deck(){
         for (int i = 0; i < 4; i++){//loop for times for the four suites
             deck.add(new Card("A", 0));
@@ -18,6 +28,11 @@ public class Deck {
         this.shuffle();
     }
 
+    /**
+     * Shuffles the deck
+     * Noted : not the most efficient, and has a change of leaving the deck unchaged
+     * TODO change?
+     */
     public void shuffle(){
         int size = deck.size();
         for(int i = 0; i < size; i++){
@@ -25,6 +40,10 @@ public class Deck {
         }
     }
 
+    /**
+     * Prints all the cards in the deck
+     * Useful for debugging and not much else
+     */
     public void printCards(){
         for (Card c : this.deck){
             System.out.print(c.getValue() + " ");
@@ -32,10 +51,19 @@ public class Deck {
         System.out.println();
     }
 
+    /**
+     * Adds a card to the discard pile
+     * @param c - the card to be add to to the discard pile
+     */
     public void returnCard(Card c){
         discard.add(c);
     }
 
+    /**
+     * Takes the top card (0 index) card in the deck, removes it, and returns
+     * If after removing a card, 
+     * @return card at index 0
+     */
     public Card dealCard(){
         Card r = deck.removeFirst();
         if (deck.size() == 0){
