@@ -6,13 +6,13 @@ public class Deck {
 
     public Deck(){
         for (int i = 0; i < 4; i++){//loop for times for the four suites
-            deck.add(new Card("A"));
+            deck.add(new Card("A", 0));
             for (int j = 2; j <= 10; j++){
-                deck.add(new Card(Integer.toString(j)));
+                deck.add(new Card(Integer.toString(j), j-1));
             }
-            deck.add(new Card("J"));
-            deck.add(new Card("Q"));
-            deck.add(new Card("K"));
+            deck.add(new Card("J", 10)); //because jack can go anywhere
+            deck.add(new Card("Q", -1)); //queen goes nowhere
+            deck.add(new Card("K", -1)); //king goes nowhere
         }
         //this.printCards();
         this.shuffle();
@@ -44,5 +44,14 @@ public class Deck {
             discard.clear();
         }
         return r;
+    }
+
+    public void dealCard(Hand player){
+        this.discard.add(player.takeCard(this.dealCard()));
+    }
+
+    public void cardOptions(){
+        System.out.println("Deck: " + deck.getFirst().getValue());
+        System.out.println("Discard: " + discard.getLast().getValue());
     }
 }
