@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player {
     ArrayList<Card> cards;
     Deck parentDeck;
     int numShown;
+
 
     /**
      * A constructor to make a hand
@@ -39,6 +41,7 @@ public class Player {
         for (int i = 5; i < 10; i ++){
             System.out.print(cards.get(i).face() + " ");
         }
+        System.out.println();
     }
 
     /**
@@ -60,16 +63,24 @@ public class Player {
     /**
      * Checks if the deck can recieve the specified card
      * @param c - the card trying to enter the deck
-     * @return - false if the spot Card c is trying to take is already flipped/filled, or if card C's position is outside the range of the deck, true otherwise
+     * @return - false if the spot Card c is trying to take is already flipped/filled
+     * or if card C's position is outside the range of the deck;
+     * true otherwise
      */
     public boolean validCard(Card c){
-        if (c.getPosition() == -1){//auto-invalid for kings and queens
+        int pos = c.getPosition();
+        if (c.getPosition()>=cards.size()){
             return false;
         }
-        else if (c.getPosition()==10){//jack
+        else if (pos == -1){//auto-invalid for kings and queens
+            return false;
+        }
+        else if (pos==10){//jack
             return true;
         }
-        if (cards.get(c.getPosition()).isShown()){
+        //If the card trying to be replaced is already face up, or not a jack
+        //Jacks can be re-placed
+        if (cards.get(pos).isShown() && !cards.get(pos).getValue().equals("J")){
             return false;
         }
         return true;
@@ -78,14 +89,30 @@ public class Player {
     //Assume that the hand can take Card c and that Card c is valid
     /**
      * A card enters the hand, and the hand updates accordingly
-     * **Preconditon** Card c can be taken by the hand
+     * @pre Card c can be taken by the hand (validCard( c ) == true)
      * @param c - the card entering the deck
      * @return the card that got kicked out by Card c
      */
     public Card takeCard(Card c){
-        Card r;
-        if (c.getPosition()!=10){//valid card, not a jack
-            r = 
+        Card r; //temp holder for the card to be returned
+        int pos = c.getPosition();
+        if (pos == 10){//card is a jack
+            Scanner scan = new Scanner(System.in);
+            while (0 <= pos && pos <= 9){
+                System.out.print("Please enter at what position you would like this card: ");
+                pos = scan.nextInt();
+            } 
+            scan.close();  
         }
+        //TODO add logic for jacks
+        r = cards.remove(pos);
+        c.show();//need to flip the card over to prevent stack overflow
+        cards.add(pos, c);
+        this.showHand();
+        System.out.println(r.getValue() + " was removed from your hand");
+        if (this.validCard(r)){
+            return this.takeCard(r);
+        }
+        return r;
     }
 }

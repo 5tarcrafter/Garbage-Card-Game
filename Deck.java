@@ -26,6 +26,7 @@ public class Deck {
         }
         //this.printCards();
         this.shuffle();
+        this.discard.add(deck.removeFirst());//Start the game with a card in the discard pile
     }
 
     /**
@@ -67,9 +68,11 @@ public class Deck {
     public Card dealCard(){
         Card r = deck.removeFirst();
         if (deck.size() == 0){
+            Card temp = discard.getLast();
             deck.addAll(discard);
             this.shuffle();
             discard.clear();
+            discard.add(temp);
         }
         return r;
     }

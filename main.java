@@ -10,8 +10,8 @@ public static void main(String[] args){
     Deck deck = new Deck();
     System.out.println("the deck is");
     deck.printCards();
-    Hand[] players = new Hand[numPlayers];
-    players[0] = new Hand(10, deck);
+    Player[] players = new Player[numPlayers];
+    players[0] = new Player(10, deck);
     System.out.println("the deck after making one hand");
     deck.printCards();
     System.out.println("and the hand is");
@@ -26,7 +26,7 @@ public static void main(String[] args){
         deck.cardOptions();
         System.out.print("Press 1 for deck, and 2 for discard pile: ");
         input = scan.nextInt();
-        while (input != 1 || input != 2){
+        while (input != 1 && input != 2){
             System.out.println("Invalid option. Please try again.");
             System.out.print("Press 1 for deck, and 2 for discard pile: ");
             input = scan.nextInt();
