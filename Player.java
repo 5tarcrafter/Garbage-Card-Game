@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Hand {
+public class Player {
     ArrayList<Card> cards;
     Deck parentDeck;
     int numShown;
@@ -10,7 +10,7 @@ public class Hand {
      * @param numCards - the number of cards to put in the hand, assume it is a valid number 1-10
      * @param deck - the deck from where the cards come. The hand will be always aware of this deck
      */
-    public Hand(int numCards, Deck deck){
+    public Player(int numCards, Deck deck){
         this.cards = new ArrayList<>();
         for (int i = 0; i < numCards; i ++){
             cards.add(deck.dealCard());

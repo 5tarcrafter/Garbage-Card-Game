@@ -74,10 +74,19 @@ public class Deck {
         return r;
     }
 
+    /**
+     * Deals a card to a player
+     * Card is removed from the deck to avoid duplicates
+     * @param player - the player recieving the card
+     */
     public void dealCard(Hand player){
         this.discard.add(player.takeCard(this.dealCard()));
     }
 
+    /**
+     * Prints out the two cards the player may choose from
+     * Will not be used for actual gameplay, as the player is not supposed to know what deck card is
+     */
     public void cardOptions(){
         System.out.println("Deck: " + deck.getFirst().getValue());
         System.out.println("Discard: " + discard.getLast().getValue());
