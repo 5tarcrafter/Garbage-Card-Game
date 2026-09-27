@@ -79,7 +79,7 @@ public class Deck {
      * Card is removed from the deck to avoid duplicates
      * @param player - the player recieving the card
      */
-    public void dealCard(Hand player){
+    public void dealCard(Player player){
         this.discard.add(player.takeCard(this.dealCard()));
     }
 
